@@ -2,7 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            overflow-wrap: break-word;
+        }
+        .user-message {
+            background-color: #4caf50;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            text-align: right;
+            max-width: 70%;
+            margin-left: auto;
+            margin-bottom: 5px;
+        }
+        .bot-message {
+            background-color: #2196f3;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 12px;
+            text-align: left;
+            max-width: 70%;
+            margin-right: auto;
+            margin-bottom: 5px;
+        }
+        form[action="{% url 'delete_chat' %}"] {
+            text-align: center;
+        }
+        input[type="submit"][value="Delete Chat History"] {
+            padding: 8px 16px;
+            background-color: #f44336;
+        }
+    </style>
 </head>
 <body>
     <form method="post">
@@ -14,8 +80,8 @@
         <h2>Chat History:</h2>
         <ul>
             {% for chat in chat_history %}
-                <li>You: {{ chat.message }}</li>
-                <li>Bot: {{ chat.response }}</li>
+                <li class="user-message">You: {{ chat.message }}</li>
+                <li class="bot-message">Bot: {{ chat.response }}</li>
             {% endfor %}
         </ul>
         <form action="{% url 'delete_chat' %}" method="post">
