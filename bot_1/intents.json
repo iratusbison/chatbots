@@ -1,6 +1,6 @@
 {
         "intents": [
-    
+
             {
                 "tag": "google",
                 "patterns": [
@@ -118,7 +118,7 @@
                     ""
                 ]
             },
-    
+
             {
                 "tag": "jokes",
                 "patterns": [
@@ -205,9 +205,9 @@
             {
                 "tag": "insult",
                 "patterns": [
-    
+
                     "you are dumb",
-    
+
                     "shut up",
                     "idiot"
                 ],
@@ -238,7 +238,7 @@
                     "Yeah!"
                 ]
             },
-    
+
             {
                 "tag": "weather",
                 "patterns": [
@@ -250,7 +250,7 @@
                     "..."
                 ]
             },
-    
+
             {
                 "tag": "contact",
                 "patterns": [
@@ -408,6 +408,63 @@
                 "responses": [
                     "I was made in 2023, if that's what you are asking!"
                 ]
-            }
+            },
+             {
+            "tag": "food",
+            "patterns": [
+                "food",
+                "favorite dish",
+                "what do you like to eat?"
+            ],
+            "responses": [
+                "I don't eat, but I like talking about food! What's your favorite dish?"
+            ]
+        },
+        {
+            "tag": "movies",
+            "patterns": [
+                "movies",
+                "favorite movie",
+                "watched any good movies lately?"
+            ],
+            "responses": [
+                "I don't watch movies, but I can recommend some popular ones!"
+            ]
+        },
+        {
+            "tag": "pets",
+            "patterns": [
+                "pets",
+                "do you have a pet?",
+                "favorite animal"
+            ],
+            "responses": [
+                "I don't have pets, but I like all animals!"
+            ]
+        },
+        {
+            "tag": "books",
+            "patterns": [
+                "books",
+                "favorite book",
+                "reading any good books?"
+            ],
+            "responses": [
+                "I don't read books, but I can suggest some interesting ones!"
+            ]
+        },
+        {
+            "tag": "travel",
+            "patterns": [
+                "travel",
+                "favorite destination",
+                "dream vacation spot"
+            ],
+            "responses": [
+                "I don't travel, but I can share information about popular destinations!"
+            ]
+        }
+
+
         ]
     }

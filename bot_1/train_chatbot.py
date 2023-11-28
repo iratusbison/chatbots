@@ -1,3 +1,4 @@
+import pickle
 import random
 import nltk
 from nltk.stem import WordNetLemmatizer
@@ -37,6 +38,13 @@ words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_words
 words = sorted(list(set(words)))
 classes = sorted(list(set(classes)))
 
+# Save 'words' list
+with open('words.pkl', 'wb') as file:
+    pickle.dump(words, file)
+
+# Save 'classes' list
+with open('classes.pkl', 'wb') as file:
+    pickle.dump(classes, file)
 # Prepare training data
 training = []
 output_empty = [0] * len(classes)

@@ -14,9 +14,9 @@ nltk.download('punkt')
 nltk.download('wordnet')
 
 # Load the preprocessed data
-words = pickle.load(open('bot_1/words.pkl','rb'))
-classes = pickle.load(open('bot_1/classes.pkl','rb'))
-model = load_model('bot_1/chatbot_model.h5')
+words = pickle.load(open('words.pkl','rb'))
+classes = pickle.load(open('classes.pkl','rb'))
+model = load_model('chatbot_model.h5')
 
 def clean_up_sentence(sentence):
     lemmatizer = WordNetLemmatizer()
@@ -47,6 +47,8 @@ def predict_class(sentence, model):
     return return_list
 
 def get_response(ints, intents_json):
+    if not ints:  # Check if the 'ints' list is empty
+        return "Sorry, I didn't understand that."
     tag = ints[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
