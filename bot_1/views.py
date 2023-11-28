@@ -69,13 +69,32 @@ def chatbot(request):
         ints = predict_class(message, model)
         response = get_response(ints, intents_json)
         
+        # Extract context if available
+        context = None
+        if ints and 'context' in ints[0]:
+            context = ints[0]['context']
+        
         # Append current chat to chat history
-        chat_history.append({'message': message, 'response': response})
+        chat_history.append({
+            'message': message,
+            'response': response,
+            'intent': {
+                'tag': ints[0]['intent'] if ints else None,
+                'patterns': [pattern for intent in intents_json['intents'] for pattern in intent.get('patterns')],
+                'responses': [intent['responses'] for intent in intents_json['intents'] if intent['tag'] == (ints[0]['intent'] if ints else None)],
+                'context': context
+            }
+        })
         request.session['chat_history'] = chat_history
+
+        # Save conversation history as a JSON file
+        with open('conversation_history.json', 'w') as file:
+            json.dump(chat_history, file)
         
         return render(request, 'chatbot.html', {'message': message, 'response': response, 'chat_history': chat_history})
     else:
         return render(request, 'chatbot.html', {'chat_history': chat_history})
+
 
 def delete_chat(request):
     # Clear chat history from session
